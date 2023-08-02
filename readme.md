@@ -1,3 +1,20 @@
+### MCU
+ - Esp32 (Controller)
+ - RPI4 (RC CAR)
+ 
+ 
+
+### used 
+Python
+MQTT
+Node-red
+QT (controller)
+EC2
+Mysql
+
+
+
+
 [ Node-red 설치 ]
 1. https://nodejs.org/en 왼쪽 다운
 2. (cmd) node --version
