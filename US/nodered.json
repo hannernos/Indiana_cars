@@ -1,0 +1,117 @@
+[
+    {
+        "id": "f1dd61ec50ab04bd",
+        "type": "tab",
+        "label": "플로우 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "0ef57447ec496ca2",
+        "type": "mqtt in",
+        "z": "f1dd61ec50ab04bd",
+        "name": "",
+        "topic": "RC/dir",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "5c0acd9cf6281cb4",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 90,
+        "y": 180,
+        "wires": [
+            [
+                "3cd8b9b3cb52c205"
+            ]
+        ]
+    },
+    {
+        "id": "3cd8b9b3cb52c205",
+        "type": "function",
+        "z": "f1dd61ec50ab04bd",
+        "name": "function 1",
+        "func": "var idu=1;\nlet today = new Date();\n\n// 년도 getFullYear()\n\nlet year = today.getFullYear();\n\n// 월 getMonth() (0~11로 1월이 0으로 표현되기 때문에 + 1을 해주어야 원하는 월을 구할 수 있다.)\n\nlet month = today.getMonth() + 1\n\n// 일 getDate()\n\nlet date = today.getDate(); // 일\n\n// 시 getHours()\n\nlet hours = today.getHours();\n\n// 분 getMinutes()\n\nlet minutes = today.getMinutes();\n\n/// 초 getSeconds()\n\nlet seconds = today.getSeconds();\n\nvar timeu = \"'\" + year + '-' + month + '-' + date + ' ' + hours + ':' + minutes + ':' + seconds + \"'\";\n\n// 2022. 06. 21. \n// 2021-08-05\nvar cmdu = \"'\"+msg.payload+\"'\";\nvar argu=\"'0'\";\nvar isu=\"'0'\";\nmsg.topic = `insert into command(time,cmd_string,arg_string,is_finish) values(${timeu},${cmdu},\"'0'\",${isu})`;\n//msg.payload=[]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 180,
+        "wires": [
+            [
+                "0a7856fbaf85c3b3",
+                "935d6480b445106d"
+            ]
+        ]
+    },
+    {
+        "id": "0a7856fbaf85c3b3",
+        "type": "debug",
+        "z": "f1dd61ec50ab04bd",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "935d6480b445106d",
+        "type": "mysql",
+        "z": "f1dd61ec50ab04bd",
+        "mydb": "6f35224c55c73cd9",
+        "name": "RC",
+        "x": 390,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5c0acd9cf6281cb4",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "input your ip",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "6f35224c55c73cd9",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "input host ip",
+        "port": "3306",
+        "db": "ss_map",
+        "tz": "",
+        "charset": "UTF8"
+    }
+]
