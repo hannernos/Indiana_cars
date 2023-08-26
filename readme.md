@@ -29,6 +29,5 @@ mosquitto_sub -h ip -t "RC/dir"
 
 US_Ultrasonic + Servo
 
-```html
-<img src = "rccar.gif">
- ```
+![rccar](rccar.gif)
+ 
